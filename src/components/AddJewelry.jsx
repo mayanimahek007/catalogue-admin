@@ -39,7 +39,7 @@ export default function AddJewelry() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/categories');
+      const res = await axios.get('https://catalogue-api.crystovajewels.com/api/categories');
       setCategories(res.data);
     } catch (err) {
       console.error('Error fetching categories:', err);
@@ -87,10 +87,10 @@ export default function AddJewelry() {
       }
       
       if (editItem && editItem._id) {
-        await axios.put(`http://localhost:5000/api/jewelry/${editItem._id}`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+        await axios.put(`https://catalogue-api.crystovajewels.com/api/jewelry/${editItem._id}`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
         alert('Updated');
       } else {
-        await axios.post('http://localhost:5000/api/jewelry', fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+        await axios.post('https://catalogue-api.crystovajewels.com/api/jewelry', fd, { headers: { 'Content-Type': 'multipart/form-data' } });
         alert('Added');
       }
       nav('/jewelry');

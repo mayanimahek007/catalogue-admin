@@ -9,13 +9,13 @@ export default function JewelryTable({ showDelete = false }) {
   useEffect(() => { fetchItems(); }, []);
   const fetchItems = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/jewelry');
+      const res = await axios.get('https://catalogue-api.crystovajewels.com/api/jewelry');
       setItems(res.data);
     } catch (err) { console.error(err); }
   };
   const del = async (id) => {
     if (!window.confirm('Delete this item from your collection?')) return;
-    await axios.delete('http://localhost:5000/api/jewelry/' + id);
+    await axios.delete('https://catalogue-api.crystovajewels.com/api/jewelry/' + id);
     fetchItems();
   };
 
@@ -55,7 +55,7 @@ export default function JewelryTable({ showDelete = false }) {
               <tr key={it._id} style={{ textAlign: 'center', fontFamily: 'Georgia, serif' }}>
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>
                   {it.imageUrl ? (
-                    <img src={'http://localhost:5000' + it.imageUrl} alt={it.name} style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '4px', border: '1px solid #f0e6db' }} />
+                    <img src={'https://catalogue-api.crystovajewels.com' + it.imageUrl} alt={it.name} style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '4px', border: '1px solid #f0e6db' }} />
                   ) : it.videoUrl ? (
                     <div style={{ color: '#a67c52', fontSize: '12px' }}>🎥 Video</div>
                   ) : '-' }
@@ -66,7 +66,7 @@ export default function JewelryTable({ showDelete = false }) {
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>{it.price ? `$${it.price}` : '-'}</td>
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>
                   {it.videoUrl ? (
-                    <video src={'http://localhost:5000' + it.videoUrl} style={{ maxWidth: '80px', maxHeight: '80px' }} controls />
+                    <video src={'https://catalogue-api.crystovajewels.com' + it.videoUrl} style={{ maxWidth: '80px', maxHeight: '80px' }} controls />
                   ) : '-' }
                 </td>
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>

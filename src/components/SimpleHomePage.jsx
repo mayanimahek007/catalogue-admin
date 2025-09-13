@@ -11,7 +11,7 @@ export default function SimpleHomePage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/categories');
+      const res = await axios.get('https://catalogue-api.crystovajewels.com/api/categories');
       setCategories(res.data);
     } catch (err) {
       console.error('Error fetching categories:', err);
@@ -89,7 +89,7 @@ export default function SimpleHomePage() {
             >
               {category.imageUrl && (
                 <img
-                  src={`http://localhost:5000${category.imageUrl}`}
+                  src={`https://catalogue-api.crystovajewels.com${category.imageUrl}`}
                   alt={category.name}
                   style={{
                     width: '100%',

@@ -137,7 +137,7 @@ const CategoryManagement = () => {
                 }}>
                   {category.imageUrl ? (
                     <img
-                      src={`http://localhost:5000${category.imageUrl}`}
+                      src={`https://catalogue-api.crystovajewels.com${category.imageUrl}`}
                       alt={category.name}
                       style={{
                         width: '100%',

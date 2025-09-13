@@ -17,7 +17,7 @@ export default function CategoryManagement() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/categories');
+      const res = await axios.get('https://catalogue-api.crystovajewels.com/api/categories');
       setCategories(res.data);
     } catch (err) {
       console.error('Error fetching categories:', err);
@@ -43,11 +43,11 @@ export default function CategoryManagement() {
 
     try {
       if (editingCategory) {
-        await axios.put(`http://localhost:5000/api/categories/${editingCategory._id}`, formDataToSend, {
+        await axios.put(`https://catalogue-api.crystovajewels.com/api/categories/${editingCategory._id}`, formDataToSend, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
       } else {
-        await axios.post('http://localhost:5000/api/categories', formDataToSend, {
+        await axios.post('https://catalogue-api.crystovajewels.com/api/categories', formDataToSend, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
       }
@@ -75,7 +75,7 @@ export default function CategoryManagement() {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await axios.delete(`https://catalogue-api.crystovajewels.com/api/categories/${id}`);
       fetchCategories();
     } catch (err) {
       console.error('Error deleting category:', err);
@@ -237,7 +237,7 @@ export default function CategoryManagement() {
           >
             {category.imageUrl && (
               <img
-                src={`http://localhost:5000${category.imageUrl}`}
+                src={`https://catalogue-api.crystovajewels.com${category.imageUrl}`}
                 alt={category.name}
                 style={{
                   width: '100%',

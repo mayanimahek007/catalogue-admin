@@ -127,7 +127,7 @@ const EditCategory = () => {
                 overflow: 'hidden'
               }}>
                 <img
-                  src={`http://localhost:5000${currentImageUrl}`}
+                  src={`https://catalogue-api.crystovajewels.com${currentImageUrl}`}
                   alt="Current category"
                   style={{
                     width: '100%',

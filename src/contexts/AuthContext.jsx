@@ -4,7 +4,7 @@ import axios from 'axios';
 const AuthContext = createContext();
 
 // Configure axios defaults
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://catalogue-api.crystovajewels.com/api';
 
 // Add request interceptor to include token
 axios.interceptors.request.use(

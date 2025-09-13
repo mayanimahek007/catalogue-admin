@@ -28,14 +28,14 @@ export default function ProductDisplay() {
     try {
       console.log('Fetching products for category:', categoryId);
       // First try the category-specific route
-      const res = await axios.get(`http://localhost:5000/api/jewelry/category/${categoryId}`);
+      const res = await axios.get(`https://catalogue-api.crystovajewels.com/api/jewelry/category/${categoryId}`);
       console.log('Products from category route:', res.data);
       setProducts(res.data);
     } catch (err) {
       console.error('Error fetching products by category:', err);
       // If that fails, try to get all products and filter by category
       try {
-        const allProductsRes = await axios.get('http://localhost:5000/api/jewelry');
+        const allProductsRes = await axios.get('https://catalogue-api.crystovajewels.com/api/jewelry');
         console.log('All products:', allProductsRes.data);
         const filteredProducts = allProductsRes.data.filter(product => 
           product.category === categoryId || product.categoryname === category?.name
@@ -51,7 +51,7 @@ export default function ProductDisplay() {
 
   const fetchCategory = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/categories/${categoryId}`);
+      const res = await axios.get(`https://catalogue-api.crystovajewels.com/api/categories/${categoryId}`);
       setCategory(res.data);
     } catch (err) {
       console.error('Error fetching category:', err);
@@ -257,12 +257,12 @@ export default function ProductDisplay() {
                         objectFit: 'cover'
                       }}
                     >
-                      <source src={`http://localhost:5000${product.videoUrl}`} type="video/mp4" />
+                      <source src={`https://catalogue-api.crystovajewels.com${product.videoUrl}`} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   ) : product.imageUrl ? (
                     <img
-                      src={`http://localhost:5000${product.imageUrl}`}
+                      src={`https://catalogue-api.crystovajewels.com${product.imageUrl}`}
                       alt={product.name}
                       style={{
                         width: '100%',

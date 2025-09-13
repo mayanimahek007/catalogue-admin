@@ -10,13 +10,13 @@ export default function ListJewelry({ showDelete = false }) {
   useEffect(() => { fetchItems(); }, []);
   const fetchItems = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/jewelry');
+      const res = await axios.get('https://catalogue-api.crystovajewels.com/api/jewelry');
       setItems(res.data);
     } catch (err) { console.error(err); }
   };
   const del = async (id) => {
     if (!window.confirm('Delete this item from your collection?')) return;
-    await axios.delete('http://localhost:5000/api/jewelry/' + id);
+    await axios.delete('https://catalogue-api.crystovajewels.com/api/jewelry/' + id);
     fetchItems();
   };
 
@@ -248,13 +248,13 @@ export default function ListJewelry({ showDelete = false }) {
                           border: '1px solid #f0e6db'
                         }}
                       >
-                        <source src={'http://localhost:5000' + it.videoUrl} type="video/mp4" />
+                        <source src={'https://catalogue-api.crystovajewels.com' + it.videoUrl} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     ) : it.imageUrl ? (
                       // 🖼️ Show image if image exists
                       <img
-                        src={'http://localhost:5000' + it.imageUrl}
+                        src={'https://catalogue-api.crystovajewels.com' + it.imageUrl}
                         alt={it.name}
                         style={{
                           maxWidth: '100%',
@@ -291,7 +291,7 @@ export default function ListJewelry({ showDelete = false }) {
                       height: '250px'
                     }}>
                       <img 
-                        src={'http://localhost:5000' + it.imageUrl} 
+                        src={'https://catalogue-api.crystovajewels.com' + it.imageUrl} 
                         alt={it.name} 
                         style={{ 
                           maxWidth: '100%', 

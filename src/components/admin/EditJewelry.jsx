@@ -157,7 +157,7 @@ const EditJewelry = () => {
               }}>
                 {currentMedia.imageUrl ? (
                   <img
-                    src={`http://localhost:5000${currentMedia.imageUrl}`}
+                    src={`https://catalogue-api.crystovajewels.com${currentMedia.imageUrl}`}
                     alt="Current jewelry"
                     style={{
                       width: '100%',
@@ -167,7 +167,7 @@ const EditJewelry = () => {
                   />
                 ) : currentMedia.videoUrl ? (
                   <video
-                    src={`http://localhost:5000${currentMedia.videoUrl}`}
+                    src={`https://catalogue-api.crystovajewels.com${currentMedia.videoUrl}`}
                     style={{
                       width: '100%',
                       height: '100%',

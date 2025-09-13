@@ -137,7 +137,7 @@ const JewelryManagement = () => {
                 }}>
                   {item.imageUrl ? (
                     <img
-                      src={`http://localhost:5000${item.imageUrl}`}
+                      src={`https://catalogue-api.crystovajewels.com${item.imageUrl}`}
                       alt={item.name}
                       style={{
                         width: '100%',
@@ -147,7 +147,7 @@ const JewelryManagement = () => {
                     />
                   ) : item.videoUrl ? (
                     <video
-                      src={`http://localhost:5000${item.videoUrl}`}
+                      src={`https://catalogue-api.crystovajewels.com${item.videoUrl}`}
                       style={{
                         width: '100%',
                         height: '100%',
