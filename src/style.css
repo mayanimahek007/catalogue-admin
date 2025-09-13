@@ -1,0 +1,162 @@
+/* Crystova Jewels Diary Styles */
+.crystova-diary-book {
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3) !important;
+  border-radius: 8px !important;
+}
+
+.crystova-diary-book .page {
+  background: white !important;
+  border-radius: 8px !important;
+  border: 2px solid #dee2e6 !important;
+}
+
+.crystova-diary-book .page-wrapper {
+  border-radius: 8px !important;
+}
+
+.crystova-diary-book .page-flip {
+  transition: transform 0.6s ease-in-out !important;
+}
+
+.crystova-diary-book .page-flip .page {
+  cursor: pointer !important;
+}
+
+/* Ensure only one page is visible at a time */
+.crystova-diary-book .page-wrapper {
+  width: 100% !important;
+}
+
+.crystova-diary-book .page {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* Force single page display - hide second page */
+.crystova-diary-book .page-flip .page:nth-child(2) {
+  display: none !important;
+}
+
+/* Ensure only one page is visible */
+.crystova-diary-book .page-flip {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.crystova-diary-book .page-flip .page:first-child {
+  display: block !important;
+  width: 100% !important;
+  flex: 1 !important;
+}
+
+/* Single page view styles - Show only right page */
+.single-page-view .page-flip {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.single-page-view .page-flip .page {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  display: block !important;
+  flex: 1 !important;
+  position: relative !important;
+}
+
+/* Force single page display - only show current page */
+.single-page-view .page-flip .page:not(:first-child) {
+  display: none !important;
+}
+
+/* Ensure proper page positioning */
+.single-page-view .page-flip {
+  position: relative !important;
+}
+
+.single-page-view .page-flip .page {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Page flip animation improvements */
+.crystova-diary-book .page-flip {
+  transition: transform 0.6s ease-in-out !important;
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Global styles */
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #2c3e50;
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .crystova-diary-book {
+    width: 90vw !important;
+    height: 70vh !important;
+  }
+  
+  .crystova-diary-book .page {
+    padding: 20px !important;
+  }
+}
