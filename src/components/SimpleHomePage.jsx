@@ -67,7 +67,7 @@ export default function SimpleHomePage() {
           fontSize: '18px',
           marginBottom: '40px'
         }}>
-          Lab Grown Diamond Jewelry - Wholesale Catalog 2024
+          Lab Grown Diamond Jewelry - Wholesale catalog 2025
         </p>
 
         <div style={{

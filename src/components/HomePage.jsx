@@ -193,7 +193,7 @@ export default function HomePage() {
                 fontSize: '14px',
                 margin: 0
               }}>
-                Wholesale catalog 2024
+                Wholesale catalog 2025
               </p>
             </div>
           </div>

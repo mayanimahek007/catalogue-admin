@@ -117,14 +117,13 @@ const AddJewelry = () => {
                 color: '#2c3e50',
                 fontWeight: '500'
               }}>
-                Name *
+                Name (Optional)
               </label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
                 style={{
                   width: '100%',
                   padding: '12px',

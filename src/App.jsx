@@ -99,7 +99,7 @@ function HomePage() {
             textTransform: 'uppercase',
             letterSpacing: '2px'
           }}>
-            Wholesale catalog 2024
+            Wholesale catalog 2025
           </p>
         </div>
 
