@@ -200,16 +200,6 @@ const JewelryManagement = () => {
                       </p>
                     )}
                     
-                    {item.price && (
-                      <p style={{
-                        color: '#27ae60',
-                        margin: 0,
-                        fontSize: '16px',
-                        fontWeight: 'bold'
-                      }}>
-                        ₹{item.price.toLocaleString()}
-                      </p>
-                    )}
                   </div>
 
                   {/* Actions */}

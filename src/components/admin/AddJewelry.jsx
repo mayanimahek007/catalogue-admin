@@ -8,8 +8,7 @@ const AddJewelry = () => {
   const [formData, setFormData] = useState({
     name: '',
     category: '',
-    sku: '',
-    price: ''
+    sku: ''
   });
   const [categories, setCategories] = useState([]);
   const [imageFile, setImageFile] = useState(null);
@@ -192,30 +191,6 @@ const AddJewelry = () => {
               />
             </div>
 
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '8px',
-                color: '#2c3e50',
-                fontWeight: '500'
-              }}>
-                Price (₹)
-              </label>
-              <input
-                type="number"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  border: '2px solid #ecf0f1',
-                  borderRadius: '8px',
-                  fontSize: '16px',
-                  boxSizing: 'border-box'
-                }}
-              />
-            </div>
 
             <div style={{ marginBottom: '20px' }}>
               <label style={{

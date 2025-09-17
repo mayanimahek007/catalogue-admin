@@ -8,7 +8,6 @@ export default function AddJewelry() {
   const [form, setForm] = useState({
     name: '',
     sku: '',
-    price: '',
     categoryname: '',
     category: ''
   });
@@ -24,7 +23,6 @@ export default function AddJewelry() {
       setForm({
         name: editItem.name || '',
         sku: editItem.sku || '',
-        price: editItem.price || '',
         categoryname: editItem.categoryname || '',
         category: editItem.category?._id || ''
       });
@@ -74,7 +72,6 @@ export default function AddJewelry() {
       console.log('Form data being sent:', {
         name: form.name,
         sku: form.sku,
-        price: form.price,
         categoryname: form.categoryname,
         category: form.category
       });
@@ -182,10 +179,6 @@ export default function AddJewelry() {
           <div style={{flex:1, display:'flex', flexDirection:'column', gap:6}}>
             <label style={{color:'#7c5c36', fontWeight:'bold'}}>SKU</label>
             <input name="sku" placeholder="SKU" value={form.sku} onChange={handleChange} style={{padding:10, borderRadius:6, border:'1px solid #e2c7a7'}}/>
-          </div>
-          <div style={{flex:1, display:'flex', flexDirection:'column', gap:6}}>
-            <label style={{color:'#7c5c36', fontWeight:'bold'}}>Price</label>
-            <input name="price" type="number" placeholder="Price" value={form.price} onChange={handleChange} style={{padding:10, borderRadius:6, border:'1px solid #e2c7a7'}}/>
           </div>
         </div>
         

@@ -44,7 +44,6 @@ export default function JewelryTable({ showDelete = false }) {
               <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>Name</th>
               <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>Category</th>
               <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>SKU</th>
-              <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>Price</th>
               <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>Video</th>
               <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>Edit</th>
               {showDelete && <th style={{ padding: '10px', border: '1px solid #e2c7a7' }}>Delete</th>}
@@ -63,7 +62,6 @@ export default function JewelryTable({ showDelete = false }) {
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>{it.name}</td>
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>{it.categoryname || '-'}</td>
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>{it.sku || '-'}</td>
-                <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>{it.price ? `$${it.price}` : '-'}</td>
                 <td style={{ padding: '8px', border: '1px solid #e2c7a7' }}>
                   {it.videoUrl ? (
                     <video src={'https://catalogue-api.crystovajewels.com' + it.videoUrl} style={{ maxWidth: '80px', maxHeight: '80px' }} controls />

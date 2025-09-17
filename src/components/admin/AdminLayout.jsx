@@ -138,36 +138,13 @@ const AdminLayout = ({ children }) => {
           </Link>
         </nav>
 
-        {/* User Info */}
+        {/* Logout Button */}
         <div style={{
           position: 'absolute',
           bottom: '20px',
           left: '20px',
           right: '20px'
         }}>
-          <div style={{
-            padding: '15px',
-            backgroundColor: '#34495e',
-            borderRadius: '8px',
-            borderBottom: '1px solid #2c3e50'
-          }}>
-            <p style={{
-              color: 'white',
-              margin: '0 0 5px 0',
-              fontSize: '14px',
-              fontWeight: '500'
-            }}>
-              {user?.username}
-            </p>
-            <p style={{
-              color: '#bdc3c7',
-              margin: 0,
-              fontSize: '12px'
-            }}>
-              {user?.email}
-            </p>
-          </div>
-          
           <button
             onClick={handleLogout}
             style={{
@@ -179,8 +156,7 @@ const AdminLayout = ({ children }) => {
               borderRadius: '6px',
               fontSize: '12px',
               fontWeight: '500',
-              cursor: 'pointer',
-              marginTop: '10px'
+              cursor: 'pointer'
             }}
           >
             Logout
