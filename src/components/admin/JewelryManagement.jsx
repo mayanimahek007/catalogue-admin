@@ -190,13 +190,13 @@ const JewelryManagement = () => {
                       <strong>Category:</strong> {item.category?.name || item.categoryname || 'N/A'}
                     </p>
                     
-                    {item.sku && (
+                    {item.price && (
                       <p style={{
                         color: '#7f8c8d',
                         margin: 0,
                         fontSize: '14px'
                       }}>
-                        <strong>SKU:</strong> {item.sku}
+                        <strong>Price:</strong> ₹{item.price}
                       </p>
                     )}
                     
