@@ -8,7 +8,6 @@ const EditJewelry = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
     category: '',
     sku: '',
     price: ''
@@ -18,6 +17,7 @@ const EditJewelry = () => {
   const [videoFile, setVideoFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [currentMedia, setCurrentMedia] = useState({ imageUrl: null, videoUrl: null });
+  const [dragOver, setDragOver] = useState(false);
 
   useEffect(() => {
     fetchCategories();

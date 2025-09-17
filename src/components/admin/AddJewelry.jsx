@@ -6,7 +6,6 @@ import AdminLayout from './AdminLayout';
 
 const AddJewelry = () => {
   const [formData, setFormData] = useState({
-    name: '',
     category: '',
     sku: '',
     price: ''
@@ -15,6 +14,7 @@ const AddJewelry = () => {
   const [imageFile, setImageFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,6 +47,37 @@ const AddJewelry = () => {
   const handleVideoChange = (e) => {
     setVideoFile(e.target.files[0]);
     setImageFile(null); // Clear image if video is selected
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragOver(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setDragOver(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragOver(false);
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      const file = files[0];
+      const fileType = file.type;
+      
+      if (fileType.startsWith('image/')) {
+        setImageFile(file);
+        setVideoFile(null);
+      } else if (fileType.startsWith('video/')) {
+        setVideoFile(file);
+        setImageFile(null);
+      } else {
+        toast.error('Please drop an image or video file');
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -110,30 +141,6 @@ const AddJewelry = () => {
           maxWidth: '600px'
         }}>
           <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '8px',
-                color: '#2c3e50',
-                fontWeight: '500'
-              }}>
-                Name (Optional)
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  border: '2px solid #ecf0f1',
-                  borderRadius: '8px',
-                  fontSize: '16px',
-                  boxSizing: 'border-box'
-                }}
-              />
-            </div>
 
             <div style={{ marginBottom: '20px' }}>
               <label style={{
@@ -229,12 +236,58 @@ const AddJewelry = () => {
                 color: '#2c3e50',
                 fontWeight: '500'
               }}>
-                Image
+                Image or Video
               </label>
+              
+              {/* Drag & Drop Area */}
+              <div
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                style={{
+                  width: '100%',
+                  padding: '40px 20px',
+                  border: dragOver ? '3px dashed #27ae60' : '3px dashed #ecf0f1',
+                  borderRadius: '12px',
+                  backgroundColor: dragOver ? '#f8fff8' : '#f8f9fa',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  marginBottom: '15px'
+                }}
+              >
+                <div style={{ fontSize: '48px', marginBottom: '10px' }}>
+                  {dragOver ? '📁' : '📎'}
+                </div>
+                <p style={{ 
+                  color: dragOver ? '#27ae60' : '#7f8c8d', 
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  margin: '0 0 5px 0'
+                }}>
+                  {dragOver ? 'Drop your file here' : 'Drag & drop your file here'}
+                </p>
+                <p style={{ color: '#95a5a6', fontSize: '14px', margin: '0' }}>
+                  or click to browse
+                </p>
+              </div>
+
+              {/* File Input */}
               <input
                 type="file"
-                accept="image/*"
-                onChange={handleImageChange}
+                accept="image/*,video/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    if (file.type.startsWith('image/')) {
+                      setImageFile(file);
+                      setVideoFile(null);
+                    } else if (file.type.startsWith('video/')) {
+                      setVideoFile(file);
+                      setImageFile(null);
+                    }
+                  }
+                }}
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -244,38 +297,15 @@ const AddJewelry = () => {
                   boxSizing: 'border-box'
                 }}
               />
+              
               {imageFile && (
                 <p style={{ color: '#27ae60', margin: '5px 0 0 0', fontSize: '14px' }}>
-                  Selected: {imageFile.name}
+                  📷 Selected Image: {imageFile.name}
                 </p>
               )}
-            </div>
-
-            <div style={{ marginBottom: '30px' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '8px',
-                color: '#2c3e50',
-                fontWeight: '500'
-              }}>
-                Video
-              </label>
-              <input
-                type="file"
-                accept="video/*"
-                onChange={handleVideoChange}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  border: '2px solid #ecf0f1',
-                  borderRadius: '8px',
-                  fontSize: '16px',
-                  boxSizing: 'border-box'
-                }}
-              />
               {videoFile && (
                 <p style={{ color: '#27ae60', margin: '5px 0 0 0', fontSize: '14px' }}>
-                  Selected: {videoFile.name}
+                  🎥 Selected Video: {videoFile.name}
                 </p>
               )}
               <p style={{ color: '#7f8c8d', margin: '5px 0 0 0', fontSize: '12px' }}>
