@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdminLayout from './AdminLayout';
+import ConfirmationModal from './ConfirmationModal';
 
 const JewelryManagement = () => {
   const [jewelry, setJewelry] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    item: null
+  });
 
   useEffect(() => {
     fetchJewelry();
@@ -24,17 +29,29 @@ const JewelryManagement = () => {
     }
   };
 
-  const handleDelete = async (id, name) => {
-    if (window.confirm(`Are you sure you want to delete "${name}"?`)) {
-      try {
-        await axios.delete(`/jewelry/${id}`);
-        toast.success('Jewelry deleted successfully');
-        fetchJewelry();
-      } catch (error) {
-        toast.error('Failed to delete jewelry');
-        console.error('Error:', error);
-      }
+  const handleDeleteClick = (item) => {
+    setDeleteModal({
+      isOpen: true,
+      item: item
+    });
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!deleteModal.item) return;
+    
+    try {
+      await axios.delete(`/jewelry/${deleteModal.item._id}`);
+      toast.success('Jewelry deleted successfully');
+      fetchJewelry();
+      setDeleteModal({ isOpen: false, item: null });
+    } catch (error) {
+      toast.error('Failed to delete jewelry');
+      console.error('Error:', error);
     }
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteModal({ isOpen: false, item: null });
   };
 
   if (loading) {
@@ -225,7 +242,7 @@ const JewelryManagement = () => {
                     </Link>
                     
                     <button
-                      onClick={() => handleDelete(item._id, item.name)}
+                      onClick={() => handleDeleteClick(item)}
                       style={{
                         flex: 1,
                         padding: '8px 16px',
@@ -246,6 +263,18 @@ const JewelryManagement = () => {
             ))}
           </div>
         )}
+
+        {/* Confirmation Modal */}
+        <ConfirmationModal
+          isOpen={deleteModal.isOpen}
+          onClose={handleDeleteCancel}
+          onConfirm={handleDeleteConfirm}
+          title="Delete Jewelry Item"
+          message={`Are you sure you want to delete "${deleteModal.item?.name || 'this jewelry item'}"? This action cannot be undone and will also delete all associated images and videos.`}
+          confirmText="Yes, Delete"
+          cancelText="Cancel"
+          type="danger"
+        />
       </div>
     </AdminLayout>
   );

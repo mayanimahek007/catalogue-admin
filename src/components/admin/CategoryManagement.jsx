@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import AdminLayout from './AdminLayout';
+import ConfirmationModal from './ConfirmationModal';
 
 const CategoryManagement = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    item: null
+  });
 
   useEffect(() => {
     fetchCategories();
@@ -24,17 +29,29 @@ const CategoryManagement = () => {
     }
   };
 
-  const handleDelete = async (id, name) => {
-    if (window.confirm(`Are you sure you want to delete "${name}"? This will also delete all jewelry items in this category.`)) {
-      try {
-        await axios.delete(`/categories/${id}`);
-        toast.success('Category deleted successfully');
-        fetchCategories();
-      } catch (error) {
-        toast.error('Failed to delete category');
-        console.error('Error:', error);
-      }
+  const handleDeleteClick = (item) => {
+    setDeleteModal({
+      isOpen: true,
+      item: item
+    });
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!deleteModal.item) return;
+    
+    try {
+      await axios.delete(`/categories/${deleteModal.item._id}`);
+      toast.success('Category deleted successfully');
+      fetchCategories();
+      setDeleteModal({ isOpen: false, item: null });
+    } catch (error) {
+      toast.error('Failed to delete category');
+      console.error('Error:', error);
     }
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteModal({ isOpen: false, item: null });
   };
 
   if (loading) {
@@ -208,7 +225,7 @@ const CategoryManagement = () => {
                     </Link>
                     
                     <button
-                      onClick={() => handleDelete(category._id, category.name)}
+                      onClick={() => handleDeleteClick(category)}
                       style={{
                         flex: 1,
                         padding: '8px 16px',
@@ -229,6 +246,18 @@ const CategoryManagement = () => {
             ))}
           </div>
         )}
+
+        {/* Confirmation Modal */}
+        <ConfirmationModal
+          isOpen={deleteModal.isOpen}
+          onClose={handleDeleteCancel}
+          onConfirm={handleDeleteConfirm}
+          title="Delete Category"
+          message={`Are you sure you want to delete "${deleteModal.item?.name || 'this category'}"? This will also delete all jewelry items in this category and their associated images/videos. This action cannot be undone.`}
+          confirmText="Yes, Delete"
+          cancelText="Cancel"
+          type="danger"
+        />
       </div>
     </AdminLayout>
   );
